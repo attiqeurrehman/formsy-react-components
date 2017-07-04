@@ -8,7 +8,7 @@
     "test:full": "jest --coverage --verbose",
     "lint": "eslint src examples",
     "prepublish": "NODE_ENV=production npm run lint && npm run transpile",
-    "transpile": "rm -rf release && babel src -d release --ignore __tests__",
+    "transpile": "babel src -d release --ignore __tests__",
     "dev": "babel src --watch -d release --source-maps",
     "examples": "webpack-dev-server --config examples/webpack.config --port 3000 --content-base examples",
     "examples:build": "webpack -p --config examples/webpack.config",
@@ -41,7 +41,8 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "lodash.debounce": "^4.0.6",
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "react-fontawesome": "^1.6.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

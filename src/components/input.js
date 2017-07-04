@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
+import FontAwesome from 'react-fontawesome';
 import ComponentCommon from './component-common';
 import ErrorMessages from './error-messages';
 import Help from './help';
@@ -109,6 +110,7 @@ class Input extends Component {
             >
                 {control}
                 {this.props.showErrors ? <Icon symbol="remove" className="form-control-feedback" /> : null}
+                {this.props.icon && <FontAwesome name={this.props.icon} />}    
                 {this.props.help ? <Help help={this.props.help} /> : null}
                 {this.props.showErrors ? <ErrorMessages messages={this.props.errorMessages} /> : null}
             </Row>

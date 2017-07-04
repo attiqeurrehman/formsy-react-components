@@ -1,4 +1,5 @@
 import Checkbox from './components/checkbox';
+import Switch from './components/switch';
 import CheckboxGroup from './components/checkbox-group';
 import Icon from './components/icon';
 import Input from './components/input';
@@ -14,6 +15,7 @@ import FormsyReactComponent from './hoc/component';
 const FRC = {
     Checkbox:           FormsyReactComponent(Checkbox),
     CheckboxGroup:      FormsyReactComponent(CheckboxGroup),
+    Switch:           FormsyReactComponent(Switch),
     Input:              FormsyReactComponent(Input),
     File:               FormsyReactComponent(File),
     RadioGroup:         FormsyReactComponent(RadioGroup),

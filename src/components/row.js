@@ -30,7 +30,12 @@ const Row = (props) => {
 
     // We should render the label if there is label text defined, or if the
     // component is required (so a required symbol is displayed in the label tag)
-    const shouldRenderLabel = false;
+    const shouldRenderLabel = label.length > 0; //((label !== null) || required) 
+    const hasIcon = props.icon;
+
+    if (hasIcon) {
+        cssClasses.row.push('has-icon');
+    }
 
     if (layout === 'horizontal') {
 
