@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import DateTime from 'react-datetime';
 import ControlCommon from './control-common';
 
 class InputControl extends Component {
@@ -12,6 +13,16 @@ class InputControl extends Component {
         let { className } = this.props;
         if (['hidden', 'range'].indexOf(this.props.type) !== -1) {
             className = null;
+        }
+        if (this.props.type === 'date') {
+            //TODO: Add some bootstrap date control
+            return <Datetime
+                {...this.props}
+                className={className}
+                ref={this.initElementRef}
+                closeOnSelect={true}
+                timeFormat={false}
+            />;
         }
         return (
             <input
