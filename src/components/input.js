@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import FontAwesome from 'react-fontawesome';
+import DateTime from 'react-datetime';
 import ComponentCommon from './component-common';
 import ErrorMessages from './error-messages';
 import Help from './help';
@@ -40,7 +41,7 @@ class Input extends Component {
     }
 
     handleChange = (event) => {
-        const value = event.currentTarget.value;
+        const value = this.props.type === 'date'? event.format(this.props.dateFormat): event.currentTarget.value;
         this.setState({value: value});
         if (this.shouldUpdateOn('change')) {
             this.changeDebounced(value);
@@ -49,7 +50,7 @@ class Input extends Component {
     }
 
     handleBlur = (event) => {
-        const value = event.currentTarget.value;
+        const value = this.props.type === 'date'? event.format(this.props.dateFormat): event.currentTarget.value;
         this.setState({value: value});
         if (this.shouldUpdateOn('blur')) {
             this.changeDebounced.cancel();
@@ -76,8 +77,26 @@ class Input extends Component {
         delete inputProps.updateOn;
         delete inputProps.value;
         delete inputProps.onBlur;
+        delete inputProps.icon;//Custom properties
 
+        if (this.props.type === 'date') {
+            delete inputProps.type;
+            delete inputProps.dateFormat;
+        }
+        
         let control = (
+            this.props.type === 'date'?
+            <DateTime
+                inputProps={inputProps}
+                dateFormat={this.props.dateFormat}
+                value={this.state.value}
+                onChange={this.handleChange}
+                onBlur={this.handleBlur}
+                ref={this.initElementRef}
+                closeOnSelect={true}
+                timeFormat={false}
+            />
+            :
             <InputControl
                 {...inputProps}
                 value={this.state.value}
